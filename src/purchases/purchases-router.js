@@ -1,12 +1,12 @@
 const path = require('path')
 const express = require('express')
 const xss = require('xss')
-const BudgetsService = require('./purchases-service')
+const PurchasesService = require('./purchases-service')
 
 const purchasesRouter = express.Router()
 const jsonParser = express.json()
 
-const serializeBudgets = purchases => ({
+const serializePurchases = purchases => ({
     id: purchases.id,
     budget_id: purchases.user_id,
     purchase_name: xss(purchases.purchase_name),
@@ -17,7 +17,7 @@ const serializeBudgets = purchases => ({
 purchasesRouter
     .route('/')
     .get((req, res, next) => {
-        BudgetsService.getBudgets(
+        PurchasesService.getPurchases(
             req.app.get('db')
         )
             .then(purchases => {
@@ -35,25 +35,25 @@ purchasesRouter
         const timeElapsed = Date.now();
         //conver the unix format date into string
         const today = new Date(timeElapsed);
-        const newBudgets = {
+        const newPurchases = {
             budget_id,
             purchase_name,
             purchase_cost
         }
-        for (const [key, value] of Object.entries(newBudgets))
+        for (const [key, value] of Object.entries(newPurchases))
             if (value == null)
                 return res.status(400).json({
                     error: { message: `Missing '${key}' in request body` }
                 })
-        BudgetsService.insertBudgets(
+        PurchasesService.insertPurchases(
             req.app.get('db'),
-            newBudgets
+            newPurchases
         )
             .then(purchases => {
                 res
                     .status(201)
                     .location(path.posix.join(req.originalUrl, `/${purchases.id}`))
-                    .json(serializeBudgets(purchases))
+                    .json(serializePurchases(purchases))
             })
             .catch(next)
     })
@@ -63,7 +63,7 @@ purchasesRouter
                 error: { message: `Invalid id` }
             })
         }
-        BudgetsService.getBudgets(
+        PurchasesService.getPurchases(
             req.app.get('db'),
             req.params.purchases_id
         )
@@ -89,7 +89,7 @@ purchasesRouter
                 }
             })
         }
-        BudgetsService.getBudgetsById(
+        PurchasesService.getPurchasesById(
             req.app.get('db'),
             req.params.purchases_id
         )
@@ -110,7 +110,7 @@ purchasesRouter
     .delete((req, res, next) => {
         req.params.board_id,
             console.log(typeof req.params.purchases_id)
-        BudgetsService.deleteBudgets(req.app.get('db'), req.params.purchases_id)
+        PurchasesService.deletePurchases(req.app.get('db'), req.params.purchases_id)
             .then(numRowsAffected => {
                 console.log(numRowsAffected)
                 res.status(204).end()
@@ -138,13 +138,13 @@ purchasesRouter
                     message: `Request body must content either 'title' or 'completed'`
                 }
             })
-        BudgetsService.updateBudgets(
+        PurchasesService.updatePurchases(
             req.app.get('db'),
             req.params.purchases_id,
             purchasesToUpdate
         )
             .then(updatedpurchases => {
-                res.status(200).json(serializeBudgets(updatedpurchases[0]))
+                res.status(200).json(serializePurchases(updatedpurchases[0]))
             })
             .catch(error => console.log(error))
     })

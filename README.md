@@ -1,26 +1,138 @@
-# Express Boilerplate!
+# Budget Buddy
+A better way to plan your daily shopping or hobbyist needs
 
-This is a boilerplate project used for starting new projects!
+## Working Prototype???
+You can access a working prototype of the React app here: https://your-app-client.herokuapp.com/ and Node app here: https://your-app-server.herokuapp.com/
 
-## Set up
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## User Stories
+This app is for a logged-in user
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+#### Landing Page
+* as a visitor
+* I want to understand what I can do with this app (or sign up, or log in)
+* so I can decide if I want to use it
 
-## Scripts
+#### Login Page
+* as a visitor
+* I want to log into this application 
+* so I can use the application
 
-Start the application `npm start`
+#### Registration Page
+* as a visitor
+* I want to register a secure account
+* so I can use the application
 
-Start nodemon for the application `npm run dev`
+#### Home Page
+* as a user
+* I want a place to create and store my list of budgets
+* so I can update them with my planned budgets and observer where or not I am within budget range
 
-Run the tests `npm test`
+#### New Budget Page
+* as a user
+* I want to create and save my new budget 
+* so that I can go in and edit it as I see fit
 
-## Deploying
+#### Budget Editting Page
+* as a user
+* I want a responsive and dynamic way of adding purchases and my income
+* so I can properly calculate my budget.
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+#### Support Page
+* as a user
+* I want a place to report errors in the page
+* so I can get a part of my application working and improve the service
+
+
+
+### Wireframes
+Landing/Login Page
+:-------------------------:
+![Landing/Login Page](/github-images/wireframes/login.png)
+Landing/Register Page
+![Landing/Register Page](/github-images/Wireframes/registration.png)
+Main Page
+![Main Page](/github-images/Wireframes/homepage.png)
+Main Page/Add Budget
+![Main Page/Add Budget](/github-images/Wireframes/new-budget.png)
+Main Page/Question Submission
+![Main Page/Edit Budget](/github-images/Wireframes/edit-budget.png)
+Support Page
+![Support Page](/github-images/Wireframes/support.png)
+
+## Screenshots???
+Landing/Login Page
+:-------------------------:
+![Landing Page](/github-images/screenshots/login-page-screenshot.png)
+Landing/Register Page
+![Register Page](/github-images/screenshots/login-page-screenshot.png)
+
+## Functionality
+The app's functionality includes:
+* Every User has the ability to create an account
+* Every User has the ability to create a list of my budgets ranging for vacations or hobbies
+* Every User has the ability to calculate the remaining money you have and add money based on your income
+
+
+## Technology
+* Front-End: HTML5, CSS3, JavaScript ES6, React
+* Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
+* Development Environment: Heroku, DBeaver
+
+
+## Front-end Structure - React Components Map
+* __Index.js__ (stateless)
+    * __App.js__ (stateful)
+        * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
+            * __LoginForm.js__ (stateful) -
+            * __RegistrationForm.js__ (stateful) -
+        * __Homepage.js__(stateless) -
+            * __NewBudgetButton.js__(stateful)
+                *__NewBudget.js__(stateful)
+            * __BudgetList.js__(stateless)
+                * __Budget.js__(stateless)
+                * __EditBudget.js__(stateless)
+            * __Support.js__(stateless) -
+                * __SupportForm.js__(stateful)
+
+
+## Back-end Structure - Business Objects???
+* Users (database table)
+    * id (auto-generated)
+    * email (email validation)
+    * username (at least 8 chars, special characters, alphanumerical)
+    * password (at least 8 chars, at least one alpha and a special character validation)
+* Budgets
+    * id (auto-generated)
+    * user_id (auto-generated)
+    * board_title (25 chars maximum, alphabetical)
+    * available_money (integer, default 0)
+    * date_created ( date-time )
+* Supports
+    * id (auto-generated)
+    * user_id (auto-generated)
+    * content
+## API Documentation???
+API Documentation details:
+* get all users
+
+## Responsive
+App is built to be usable on mobile devices, as well as responsive across mobile, tablet, laptop, and desktop screen resolutions.
+
+## Development Roadmap???
+This is v1.0 of the app, but future enhancements are expected to include:
+* add more functionality
+
+## How to run it
+Use command line to navigate into the project folder and run the following in terminal
+
+### Local Node scripts
+* To install the node project ===> npm install
+* To migrate the database ===> npm run migrate -- 1
+* To run Node server (on port 8000) ===> npm run dev
+* To run tests ===> npm run test
+
+### Local React scripts
+* To install the react project ===> npm install
+* To run react (on port 3000) ===> npm start
+* To run tests ===> npm run test

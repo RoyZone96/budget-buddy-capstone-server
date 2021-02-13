@@ -7,6 +7,15 @@ const usersRouter = express.Router()
 const jsonBodyParser = express.json()
 
 usersRouter
+.get((req, res, next) => {
+  UsersService.getBudgets(
+      req.app.get('db')
+  )
+      .then(budgets => {
+          res.json(budgets)
+      })
+      .catch(next)
+})
   .post('/', jsonBodyParser, (req, res, next) => {
     const { username, password, email } = req.body
 
