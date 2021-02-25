@@ -96,7 +96,7 @@ The app's functionality includes:
                 * __SupportForm.js__(stateful)
 
 
-## Back-end Structure - Business Objects???
+## Back-end Structure - Business Objects
 * Users (database table)
     * id (auto-generated)
     * email (email validation)
