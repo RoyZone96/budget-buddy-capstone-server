@@ -96,7 +96,7 @@ purchasesRouter
             .then(board => {
                 if (!board) {
                     return res.status(404).json({
-                        error: { message: `board doesn't exist` }
+                        error: { message: `purchase doesn't exist` }
                     })
                 }
                 res.board = board
