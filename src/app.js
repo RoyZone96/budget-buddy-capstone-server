@@ -25,9 +25,9 @@ app.use(morgan(morganOption, {
   skip: () => NODE_ENV === 'test',
 }))
 app.use(cors(
-  // ({
+  ({
   //   origin: CLIENT_ORIGIN
-  // })
+  })
 ))
 app.use(helmet())
 

@@ -1,7 +1,7 @@
 {
   "name": "budget-buddy-capstone-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "The app that helps you manage your monetary needs. Planning a huge vacation or manage your collection wishlist. Budget Buddy has your back",
   "main": "server.js",
   "scripts": {
     "test": "mocha --requite test/setup.js",
