@@ -40,6 +40,10 @@ app.use('/api/incomes', incomesRouter)
 app.use('/api/purchases', purchasesRouter)
 app.use('/api/auth', authRouter)
 
+app.get('/', (req, res) => {
+  res.send('Hello, world!')
+  })
+
 
 app.use(errorHandler)
 
